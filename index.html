@@ -99,16 +99,16 @@
 
 			<article>
 				<div class="step" data-step="1">
-					<p>STEP 1</p>
+					<p>VENEZUELA</p>
 				</div>
 				<div class="step" data-step="2">
-					<p>STEP 2</p>
+					<p>SPAIN</p>
 				</div>
 				<div class="step" data-step="3">
-					<p>STEP 3</p>
+					<p>USA</p>
 				</div>
 				<div class="step" data-step="4">
-					<p>STEP 4</p>
+					<p>BRAZIL</p>
 				</div>
 			</article>
 		</section>
@@ -168,16 +168,16 @@
 
             switch(response.index + 1){
                 case 1: 
-                    rotateTo(70, 20, response.index + 1)
+                    rotateTo(63, -4, response.index + 1)
                 break;
                 case 2:
-                    rotateTo(-76, -60, response.index + 1)
+                    rotateTo(-1, -46, response.index + 1)
                 break;
                 case 3:
-                    rotateTo(-66, 70, response.index + 1)
+                    rotateTo(105, -39, response.index + 1)
                 break;
                 case 4:
-                    rotateTo(150, 50, response.index + 1)
+                    rotateTo(54, 15, response.index + 1)
                 break;
             }
 
@@ -190,7 +190,7 @@
 
         function handleStepExit(response) {
 
-            if(response.direction === "up" && response.index === 0) {
+            if((response.direction === "up" && response.index === 0) || (response.direction === "down" && response.index === 3)) {
 
                 planet.plugins.autorotate.resume()
 
@@ -329,7 +329,7 @@
       };
 
       function rotateTo(latitude, longitude, idx) {
-        console.log(index, "index", idx, )
+        
           if(idx !== index) return
           
           
@@ -338,12 +338,7 @@
 
               
             var rotation = planet.projection.rotate();
-            console.log(index, "index")
-              
-            console.log("rotate to", rotation, latitude, longitude)
-
-           
-
+            
             if(rotation[0] > latitude) {
 
                 rotation[0] -= 0.7
@@ -376,8 +371,6 @@
             let lat_condition = rotation[0] < latitude + 1 && rotation[0] > latitude - 1
             let lon_condition = rotation[1] < longitude + 1 && rotation[1] > longitude - 1
 
-            console.log(lat_condition, "lat_condition")
-            console.log(`rotation[0]: ${rotation[0]} < latitude + 1: ${latitude + 1} ||  rotation[0]: ${rotation[0]} > latitude - 1: ${latitude - 1}`)
 
             if(!lat_condition || !lon_condition) {
 
